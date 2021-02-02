@@ -2,9 +2,10 @@
     position: relative;
     height: 220px;
     padding: 1px;
-    margin-top: 5px;
+    margin-top: -10px;
     margin-left: -10px;
     margin-right: -10px;
-    background-image: url("../images/ck-header.png");
+    background-image: url("../images/Star-Cluster.jpg");
+    /* Image source: https://www.gemini.edu/clusters2020/wp-content/uploads/2019/07/Star-Cluster.jpg */
     background-size: cover;
 }
