@@ -10,23 +10,29 @@
 
 <div onsubmit="return false">
     <h3>Specify the data shape</h3>
-    <form>
-    <div class="field">
-        <div class="control">
+    <fieldset>
+    <div class="field" style="font-size:16px">
+        <div>
             <label for="noise">Noise:</label>
-            <input id="noise" type="quantity" name="noise" placeholder="0.1" autofocus="" min="0" max="5">
+            <em id="noiseLabel" style="font-style: normal">0.1</em>
+            <input id="noise" type="range" class="form-range" name="noise" value="0.1" step="0.05" min="0" max="1"
+                   oninput="document.getElementById('noiseLabel').innerHTML = this.value;">
         </div>
-        <div class="control">
+        <div>
             <label for="x-offset">x-offset:</label>
-            <input id="x-offset" type="quantity" name="x-offset" placeholder="0.5" autofocus="" min="0" max="5">
+            <em id="xLabel" style="font-style: normal">0.5</em>
+            <input id="x-offset" type="range" name="x-offset" value="0.5" step="0.05" min="0" max="1"
+                   oninput="document.getElementById('xLabel').innerHTML = this.value;">
         </div>
-        <div class="control">
+        <div>
             <label for="y-offset">y-offset:</label>
-            <input id="y-offset" type="quantity" name="y-offset" placeholder="0.25" autofocus="" min="0" max="5">
+            <em id="yLabel" style="font-style: normal">0.25</em>
+            <input id="y-offset" type="range" name="y-offset" value="0.25" step="0.05" min="0" max="1"
+                   oninput="document.getElementById('yLabel').innerHTML = this.value;">
         </div>
     </div>
-    <button id="moon-submit">Submit</button>
-</form>
+    <button type="button" class="btn btn-warning" id="moon-submit">Submit</button>
+</fieldset>
 </div>
 
 {% endblock %}
