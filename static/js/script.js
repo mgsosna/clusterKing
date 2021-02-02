@@ -1,13 +1,4 @@
-const BLOBS_URL = "/data/blobs";
-const MOONS_URL = "/data/moons";
-const RINGS_URL = "/data/rings";
-const UNIFORM_URL = "/data/uniform";
-
-const KMEANS_URL = "/cluster/kmeans";
-
-// More than two in case algo thinks there's more
-const colors = ['orange', 'purple', 'red', 'green'];
-const names = ['A', 'B', 'C', 'D'];
+// Uses variables from constants.js and plot_functions.js
 
 // To be updated by
 var savedData;
@@ -40,51 +31,6 @@ function moonSubmit() {
     d3.select("#algo_block").style('display', 'inline-block');
 }
 
-function createPlot(inputData, title) {
-
-    var trace = {x: inputData.x,
-                 y: inputData.y,
-                 type: "scatter",
-                 mode: "markers"};
-
-    var data = [trace];
-
-    var layout = {
-        title: title
-    };
-
-    Plotly.newPlot("plot", data, layout)
-
-}
-
-function updatePlot(newData, title) {
-
-    var dataForPlot = [];
-    var clusters = newData.map(d => d.cluster);
-    var unique = clusters.filter(onlyUnique);
-
-    unique.forEach(cluster => {
-
-        var filteredData = newData.filter(d => d.cluster === cluster);
-
-        var trace = {x: filteredData.map(d => d.x),
-                     y: filteredData.map(d => d.y),
-                     mode: "markers",
-                     type: "scatter",
-                     marker:
-                        {color: colors[+cluster],
-                         size: 9},
-                     name: names[+cluster]};
-
-        dataForPlot.push(trace);
-    });
-
-    var layout = {title: title};
-
-    Plotly.newPlot("plot", dataForPlot, layout);
-
-}
-
 function getLabels() {
     var json = JSON.stringify(savedData);
 
@@ -103,6 +49,7 @@ function getLabels() {
         }
     }
 }
+
 
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
