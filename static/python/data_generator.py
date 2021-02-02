@@ -64,7 +64,7 @@ class DataGenerator:
                      n_samples: int = N_SAMPLES,
                      noise: Union[int, float] = NOISE,
                      x_offset: Union[int, float] = X_OFFSET,
-                     y_offset: Union[int, float] = Y_OFFSET) -> List[dict]:
+                     y_offset: Union[int, float] = Y_OFFSET) -> dict:
         """
         | Generate x and y coordinates for crescent moons offset by x_offset
         | and y_offset.
@@ -79,12 +79,12 @@ class DataGenerator:
         |    Noise to add to moons. 0 = perfect curves
         |
         |  x_offset: int, float
-        |    Offset in x dimension. First moon offset left, second moon
-        |    offset right
+        |    Offset in x dimension. Large values move moons apart,
+        |    small move moons closer
         |
         |  y_offset: int, float
-        |    Offset in y dimension. First moon offset up, second moon
-        |    offset down
+        |    Offset in y dimension. Positive values move moons apart,
+        |    negative move moons closer
         |
         |
         | Returns
@@ -97,18 +97,11 @@ class DataGenerator:
 
         # First moon
         x1 = np.cos(x_range[:half_n]) + normal(-x_offset, noise, half_n)
-        y1 = np.sin(x_range[:half_n]) + normal(y_offset, noise, half_n)
+        y1 = np.sin(x_range[:half_n]) + normal(-y_offset, noise, half_n)
 
         # Second moon
         x2 = np.cos(x_range[half_n:]) + normal(x_offset, noise, half_n)
-        y2 = np.sin(x_range[half_n:]) + normal(-y_offset, noise, half_n)
+        y2 = np.sin(x_range[half_n:]) + normal(y_offset, noise, half_n)
 
-        return [
-                {'label': 'A',
-                 'x': [*np.round(x1, 3)],
-                 'y': [*np.round(y1, 3)]
-                },
-                {'label': 'B',
-                 'x': [*np.round(x2, 3)],
-                 'y': [*np.round(y2, 3)]}
-               ]
+        return {'x': [*np.concatenate([x1, x2]).round(3)],
+                'y': [*np.concatenate([y1, y2]).round(3)]}
