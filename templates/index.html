@@ -1,8 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello</title>
+    <title>Cluster King</title>
+    <link rel="shortcut icon" type="image/png" href="../static/ds_circle.png">
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
+<div class="row">
+    <div class="col-xs-4">
+
+        <ul class="nav nav-tabs">
+        <li class="active"><a href="#">k-means</a></li>
+        <li><a href="gaussian.html">Gaussian Mixture</a></li>
+        <li><a href="dbscan.html">DBSCAN</a></li>
+        </ul>
+
+        <div id="content">
+        </div>
+
+        <!-- Tab content -->
+        <div id="data" class="tabcontent">
+         <h3>Data</h3>
+         <form method="POST" action="/data_rings">
+             <div>
+                <label for="noise">Noise</label>
+                <input name="noise" placeholder="0.1" autofocus="">
+            </div>
+            <div>
+                <label for="multiplier">Multiplier</label>
+                <input name="multiplier" placeholder="2">
+            </div>
+            <div>
+            <button class="button is-block is-info is-large is-fullwidth">Login</button>
+        </div>
+        </form>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+         <h3>Paris</h3>
+         <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+         <h3>Tokyo</h3>
+         <p>Tokyo is the capital of Japan.</p>
+        </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="col-xs-4">
+        <svg id="svg"></svg>
+    </div>
+</div>
+
 </body>
+<script src="../static/js/script.js"></script>
 </html>

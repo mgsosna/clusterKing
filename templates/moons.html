@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul class="nav nav-tabs">
+    <li><a href="blobs">Blobs</a></li>
+    <li class="active"><a href="#">Moons</a></li>
+    <li><a href="rings">Rings</a></li>
+    <li><a href="uniform">Uniform</a></li>
+</ul>
+
+<div onsubmit="return false">
+    <h3>Specify the data shape</h3>
+    <form>
+    <div class="field">
+        <div class="control">
+            <label for="noise">Noise:</label>
+            <input id="noise" type="quantity" name="noise" placeholder="0.1" autofocus="" min="0" max="5">
+        </div>
+        <div class="control">
+            <label for="x-offset">x-offset:</label>
+            <input id="x-offset" type="quantity" name="x-offset" placeholder="0.5" autofocus="" min="0" max="5">
+        </div>
+        <div class="control">
+            <label for="y-offset">y-offset:</label>
+            <input id="y-offset" type="quantity" name="y-offset" placeholder="0.25" autofocus="" min="0" max="5">
+        </div>
+    </div>
+    <button id="moon-submit">Submit</button>
+</form>
+</div>
+
+{% endblock %}

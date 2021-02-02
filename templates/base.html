@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cluster King</title>
+    <link rel="shortcut icon" type="image/png" href="../static/ds_circle.png">
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
+</head>
+<body>
+<div class="row">
+    <div class="col-xs-4">
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="algo_block" style="display:none">
+        <h3>Choose an algorithm</h3>
+        <select id="algo" name="algo">
+         <option value="k-means">k-Means</option>
+         <option value="gauss">Gaussian Mixture</option>
+         <option value="dbscan">DBSCAN</option>
+        </select>
+        <button id="cluster-submit">Cluster it</button>
+    </div>
+
+    </div>
+
+    <div class="col-xs-4">
+        <div id="plot"></div>
+    </div>
+</div>
+
+</body>
+<script src="../static/js/script.js"></script>
+</html>
