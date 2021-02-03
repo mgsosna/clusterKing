@@ -8,8 +8,18 @@ cl = ClusterLabeler()
 
 app = Flask(__name__)
 
-@app.route("/blobs")
+
 @app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/blobs")
 def blobs():
     return render_template("blobs.html")
 
@@ -24,11 +34,6 @@ def rings():
     return render_template("rings.html")
 
 
-@app.route("/uniform")
-def uniform():
-    return render_template("uniform.html")
-
-
 @app.route("/data/<string:dtype>", methods=['POST'])
 def data(dtype):
 
@@ -39,15 +44,11 @@ def data(dtype):
         input_dict[key] = float(input_dict[key])
 
     if dtype == 'blobs':
-        return jsonify('')
-        # return jsonify(dg.create_blobs(**input_dict))
+        return jsonify(dg.create_blobs(**input_dict))
     elif dtype == 'moons':
         return jsonify(dg.create_moons(**input_dict))
     elif dtype == 'rings':
         return jsonify(dg.create_rings(**input_dict))
-    elif dtype == 'uniform':
-        return jsonify('')
-        # return jsonify(dg.create_uniform(**input_dict))
     else:
         return jsonify(f"Error: {dtype} endpoint does not exist"), 404
 
@@ -63,6 +64,7 @@ def cluster(algo):
 
     if algo == 'kmeans':
         return jsonify(cl.kmeans(input_dict))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
