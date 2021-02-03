@@ -5,10 +5,28 @@
     <li><a href="blobs">Blobs</a></li>
     <li><a href="moons">Moons</a></li>
     <li class="active"><a href="#">Rings</a></li>
-    <li><a href="uniform">Uniform</a></li>
 </ul>
 
-<div id="content">
-    <p>Here's some ring stuff. k-means, Gauss, DBSCAN.</p>
+<div id="dtype" style="display:none">rings</div>
+
+<div onsubmit="return false">
+    <h3>Specify the data shape</h3>
+    <fieldset>
+    <div class="field" style="font-size:16px">
+        <div>
+            <label for="noise">Noise:</label>
+            <em id="noiseLabel" style="font-style: normal">0.1</em>
+            <input id="noise" type="range" class="form-range" name="noise" value="0.1" step="0.05" min="0" max="1"
+                   oninput="document.getElementById('noiseLabel').innerHTML = this.value;">
+        </div>
+        <div>
+            <label for="multiplier">Radius multiplier:</label>
+            <em id="multiplierLabel" style="font-style: normal">2</em>
+            <input id="multiplier" type="range" name="multiplier" value="2" step="0.1" min="1.5" max="4"
+                   oninput="document.getElementById('multiplierLabel').innerHTML = this.value;">
+        </div>
+    </div>
+    <button type="button" class="btn btn-warning" id="ring-submit">Submit</button>
+</fieldset>
 </div>
 {% endblock %}
