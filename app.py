@@ -57,13 +57,20 @@ def data(dtype):
 def cluster(algo):
 
     input_dict = request.get_json()
+    df = pd.DataFrame(input_dict)
 
     # Convert all values to floats
     for key in input_dict.keys():
         input_dict[key] = [float(val) for val in input_dict[key]]
 
     if algo == 'kmeans':
-        return jsonify(cl.kmeans(input_dict))
+        return jsonify(cl.kmeans(df))
+    elif algo == "gauss":
+        return jsonify(cl.gauss(df))
+    elif algo == "dbscan":
+        return jsonify(cl.dbscan(df))
+    else:
+        return jsonify(f"Error: {algo} algorithm not supported."), 404
 
 
 if __name__ == "__main__":
