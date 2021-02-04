@@ -6,17 +6,49 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/css/styles.css">
 </head>
-<body style="font-size: 16px">
+<body style="font-size: 18px; font-family: 'Georgia', serif">
 <div class="hero"></div>
 
-<p style="margin: 50px; margin-bottom: 10px">Cluster King is a Flask app written by <a href="https://mattsosna.com">Matt Sosna</a>.
-    Check out the source code <a href="https://github.com/mgsosna/clusterKing">here</a>.
+<img src="../static/images/ck-demo.png" class="center" style="margin-top: 20px"></img>
+
+<div style="margin: 50px; margin-bottom: 10px; line-height: 1.4">
+<h3>Background</h3>
+<p>Cluster King is a Flask app written by
+    <a href="https://mattsosna.com">Matt Sosna</a>. You can check out the source code <a href="https://github.com/mgsosna/clusterKing">here</a>!
 </p>
 
-<p style="margin-left: 50px; margin-top: 5px">Image credit: <a href="https://www.gemini.edu/clusters2020/wp-content/uploads/2019/07/Star-Cluster.jpg">Gemini</a>
+<p>
+    The goal of this app is to build an intuition behind various clustering algorithms and the data they're well-suited for.
+    You can generate data in various shapes (blobs, crescent moons, and rings),
+    then select between three common clustering algorithms:
+    <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a>,
+    <a href="https://scikit-learn.org/stable/modules/mixture.html">Gaussian mixture models</a>, and
+    <a href="https://en.wikipedia.org/wiki/DBSCAN">DBSCAN</a> (density-based spatial clustering of applications with noise).
+    Each of these is a form of <a href="https://www.datarobot.com/wiki/unsupervised-machine-learning/">unsupervised machine learning</a>.
+</p>
+
+<h3 style="margin-top: 60px">Why do I sometimes get weird clusters?</h3>
+<p>I've specifically selected data shapes that cause some algorithms to shine and others to struggle.
+Blobs are easy for k-means and GMMs to partition, for example, but it's remarkably easy for DBSCAN to
+believe there's only one cluster. This is partly because we explicitly tell k-means and GMMs the number of clusters
+we're expecting, but also because DBSCAN's main parameter is the <i>maximum distance between points of the same cluster</i>.
+This value is hard-coded to <strong>0.25</strong> in our app, meaning if you increase the noise or reduce
+the distance between clusters, you're bound to get some points from each cluster below this distance threshold.
+</p>
+<img src="../static/images/cluster_struggles.png" class="center" style="width:50%"></img>
+<p>
+Meanwhile, k-means and Gaussian mixture models have no idea what to do with rings because the clusters have identical
+x- and y-coordinates for their means. The best these algorithms can do is split the rings down the middle.
+DBSCAN, meanwhile, thrives: as long as the points within each ring don't pass the minimum distance threshold
+between rings, it has no problem identifying the clusters.
+</p>
+
+<p style="margin-top: 5px; margin-bottom: 100px">Image credit:
+    <a href="https://www.gemini.edu/clusters2020/wp-content/uploads/2019/07/Star-Cluster.jpg">Gemini</a>
+</p>
 </p>
 </html>
 
-<div class="footer">
+<div class="center2">
     <a href="/blobs" style="color:gray; font-size: 18px;">Back to clustering data</a>
 </div>
